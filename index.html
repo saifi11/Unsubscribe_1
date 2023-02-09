@@ -1,0 +1,73 @@
+
+<html>
+
+    <head>
+        <title>Unsubscribe from email</title>
+    
+        <!-- your WizRocket JS embed code goes here -->
+    
+    <script type="text/javascript">
+         var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[]};
+     // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
+     clevertap.account.push({"id": "6K9-K85-456Z"});
+     (function () {
+             var wzrk = document.createElement('script');
+             wzrk.type = 'text/javascript';
+             wzrk.async = true;
+             wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js';
+             var s = document.getElementsByTagName('script')[0];
+             s.parentNode.insertBefore(wzrk, s);
+      })();
+    </script>
+    </head>
+    
+    <body>
+    
+    
+        <div>
+            <h4>I want to unsubscribe from future emails</h4>
+            <input type="text" id="email" />
+            <br/><br/>
+            <button onclick="unsubscribe()">Unsubscribe me</button><br/><br/>
+            <button onclick="resubscribe()">Resubscribe</button>
+        </div>
+    
+    
+    
+         <script> //Javascript
+    // Should be true only if your server is url encoding the URL on unsubscribe landing page
+        var isReEncode = false
+        // on  page load, fetch the email id of the user.
+        window.onload = function() {
+            $WZRK_WR.getEmail(isReEncode);
+            console.log("window loaded: "+isReEncode);
+        };
+        // will be called after the email id of the user has been fetched
+        function wzrk_email_fetched(emailStr) {
+            document.getElementById("email").value = emailStr;
+            console.log("wzrk_email_fetched: "+emailStr);
+        }
+        // will be called after the subscription preferences for the user have been updated
+        function wzrk_email_subscription(status) {
+            //status 0 : unsubscribed, status 1 : subscribed
+            // todo - you can show a success message to the user from here
+            var statusLabel = 'subscribed';
+            if (status == 0) {
+                statusLabel = 'unsubscribed';
+            }
+            alert("You've been " + statusLabel);
+        }
+        // call this function to unsubscribe the user
+        function unsubscribe(isReEncode) {
+            $WZRK_WR.unSubEmail(isReEncode);
+            console.log("unsubscribe: called");
+        }
+        // call this function to resubscribe the user
+        function resubscribe(isReEncode) {
+            $WZRK_WR.subEmail(isReEncode);
+        }
+    </script>
+    
+    <style>.footer,.generic-footer{margin-bottom:98px}@media (min-width:374px){.footer,.generic-footer{margin-bottom:78px}}@media (min-width:546px){.footer,.generic-footer{margin-bottom:56px}}@media (min-width:1055px){.footer,.generic-footer{margin-bottom:0}}.disclaimer{position:fixed;z-index:9999999;bottom:0;right:0;border-top:2px solid #ff5c62;text-align:center;font-size:14px;font-weight:400;background-color:#fff;padding:5px 10px 5px 10px}.disclaimer a:hover{text-decoration:underline}@media (min-width:1052px){.disclaimer{text-align:right;border-left:2px solid red;border-top-left-radius:10px}}@media (min-width:1920px){.disclaimer{width:60%}}</style><div class="disclaimer">We support Ukraine and condemn war. Push Russian government to act against war. Be brave, vocal and show your support to Ukraine. Follow the latest news <a title="https://www.bbc.com/news/live/world-europe-60517447" target="_blank" href="https://www.bbc.com/news/live/world-europe-60517447" style="color: black;"><b>HERE</b></a></div></body>
+    
+    </html>
